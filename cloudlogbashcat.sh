@@ -107,7 +107,9 @@ while true; do
 			;;
 	esac
 
-
+  if [ "$rigMode" = "NONE" ]; then
+    rigMode=FT8
+  fi
 		
   if [ $rigFreq -ne $rigOldFreq  ] || [ "$rigMode" != "$rigOldMode"  ]; then
     # rig freq or mode changed, update Cloudlog
