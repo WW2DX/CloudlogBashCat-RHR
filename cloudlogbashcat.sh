@@ -18,6 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+# Modified by WW2DX to work with xCat and RHR on OSX
+
 DEBUG=0
 
 rigFreq=0
@@ -74,8 +76,9 @@ while true; do
 			fi
 
 			# Get rigctld frequency, mode and bandwidth - accepts multiple commands
-			echo -e "fm" >&3
+			echo -e "f" >&3
 			read -r -u3 rigFreq
+      echo -e "m" >&3
 			read -r -u3 rigMode
 			read -r -u3 rigWidth
 
@@ -114,8 +117,6 @@ while true; do
 
     curl --silent --insecure \
          --header "Content-Type: application/json" \
-         ${cloudlogHttpAuth:+"--header"} \
-         ${cloudlogHttpAuth:+"Authorization: $cloudlogHttpAuth"} \
          --request POST \
          --data "{ 
            \"key\":\"$cloudlogApiKey\",
